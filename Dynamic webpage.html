@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DOM Selectors demo</title>
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background-color: #EEF;
+  padding: 20px;
+}
+h1,h2{
+  color: #333;
+}
+.section{
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+button{
+  padding: 5px 10px;
+  margin-top: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.highlight {
+  background-color: yellow;
+}
+.box {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+</style>
+</head>
+<body>
+<h1>DOM Selectors Complete Demo</h1>
+
+<!-- 1. getElementsById -->
+<div class="section">
+<h2 id="title">Welcome to Dom</h2>
+<button onclick="changeTitle()">Change Title (getElementById)</button>
+</div>
+
+<!--2. getElementsByClassName -->
+<div class="section">
+<p class="para">Paragraph 1</p>
+<p class="para">Paragraph 2</p>
+<button onclick="highlightClass()">Highlight Paragraphs (getElementsByClassName)</button>
+</div>
+
+<!-- 3. getElementsByTagName -->
+<div class="section">
+<ul>
+<li>List 1</li>
+<li>List 2</li>
+<li>List 3</li>
+</ul>
+<button onclick="countTags()">Count li Tags (getElementsByTagName)</button>
+<p id="tagCount"></p>
+</div>
+
+<!-- 4. querySelector -->
+<div class="section box">
+<p class="highlight">First highlighted paragraph</p>
+<button onclick="changeFirstHighlight()">change first Highlight (querySelector)</button>
+</div>
+
+<!-- 5. querySelectorAll -->
+<div class="section">
+<div class="box">Box A</div>
+<div class="box">Box B</div>
+<div class="box">Box C</div>
+<button onclick="colorAllBoxes()">Color All Boxes (querySelectorAll)</button>
+</div>
+
+<!-- 6. getElementsByName -->
+<div class="section">
+<p>Select your gender:</p>
+<input type="radio" name="gender" value="Male"> Male
+<input type="radio" name="gender" value="Female"> Female
+<button onclick="checkGender()">Check Gender (getElementsByName)</button>
+<p id="genderOutput"></p>
+</div>
+
+<script>
+// 1. getElementById
+function changeTitle() {
+  document.getElementById("title").innerText = "DOM Selectors in Action!";
+}
+
+// 2. getElementsByClassName
+function highlightClass() {
+  const paras = document.getElementsByClassName("para");
+  for (let p of paras) {
+    p.classList.add("highlight");
+  }
+}
+
+// 3. getElementsByTagName
+function countTags() {
+  const items = document.getElementsByTagName("li");
+  document.getElementById("tagCount").innerText = `There are ${items.length} list items.`;
+}
+
+// 4. querySelector
+function changeFirstHighlight() {
+  const first = document.querySelector(".highlight");
+  first.innerText = "Changed using querySelector!";
+}
+
+// 5. querySelectorAll
+function colorAllBoxes() {
+  const boxes = document.querySelectorAll(".box");
+  boxes.forEach(box => {
+    box.style.backgroundColor = "#ffd700";
+  });
+}
+
+// 6. getElementsByName
+function checkGender() {
+  const genderOptions = document.getElementsByName("gender");
+  let selected = "";
+  for (let option of genderOptions) {
+    if (option.checked) {
+      selected = option.value;
+    }
+  }
+  document.getElementById("genderOutput").innerText = selected ? `You selected: ${selected}` : "Please select a gender.";
+}
+</script>
+</body>
+</html>
